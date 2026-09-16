@@ -4,39 +4,80 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
-    <title>KaraFX — Signed and confirmed</title>
-    <link rel="stylesheet" href="styles.css?v=11" />
-    <style>
-      html,
-      body {
-        margin: 0;
-        min-height: 100%;
-        background: #ffffff;
-        color: #111111;
-      }
-      body * {
-        display: none !important;
-      }
-      body::after {
-        content: "The contract has been signed and confirmed.";
-        display: flex !important;
-        min-height: 100vh;
-        align-items: center;
-        justify-content: center;
-        padding: 32px;
-        font-family: "Times New Roman", Times, serif;
-        font-size: clamp(28px, 4.6vw, 48px);
-        font-weight: 500;
-        letter-spacing: -0.02em;
-        line-height: 1.2;
-        text-align: center;
-      }
-    </style>
+    <title>KaraFX — Awaiting deposit confirmation</title>
+    <link rel="icon" href="assets/logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css?v=12" />
   </head>
   <body>
-    <p>The contract has been signed and confirmed.</p>
-    <script src="app.js?v=11"></script>
+    <main class="settle" role="status" aria-live="polite">
+      <img class="brand" src="assets/logo.png" alt="KaraFX" />
+
+      <div class="mark" aria-hidden="true">
+        <svg class="rings" viewBox="0 0 88 88">
+          <circle class="track" cx="44" cy="44" r="38" />
+          <circle class="arc arc-a" cx="44" cy="44" r="38" />
+          <circle class="arc arc-b" cx="44" cy="44" r="28" />
+        </svg>
+      </div>
+
+      <p class="kicker">Settlement in progress</p>
+      <h1>Waiting for deposit confirmation</h1>
+      <p class="lede">
+        The Investment Agreement has been executed. We are now confirming receipt
+        of the investment capital before allocation can begin.
+      </p>
+
+      <ol class="steps">
+        <li class="done">
+          <span class="step-mark"></span>
+          <span>
+            <strong>Agreement executed</strong>
+            <em>Signed and on file</em>
+          </span>
+        </li>
+        <li class="active">
+          <span class="step-mark"></span>
+          <span>
+            <strong>Deposit confirmation</strong>
+            <em id="statusLine">Checking incoming settlement</em>
+          </span>
+        </li>
+        <li>
+          <span class="step-mark"></span>
+          <span>
+            <strong>Capital allocation</strong>
+            <em>Starts after credit is verified</em>
+          </span>
+        </li>
+      </ol>
+
+      <dl class="facts">
+        <div>
+          <dt>Reference</dt>
+          <dd>KFX-IA-20260916</dd>
+        </div>
+        <div>
+          <dt>Amount</dt>
+          <dd>EUR 1,000.00</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd id="statusBadge">Pending credit</dd>
+        </div>
+      </dl>
+
+      <p class="meta">
+        <span class="live-dot"></span>
+        Last checked <time id="checkedAt">just now</time>
+        · Elapsed <span id="elapsed">00:00</span>
+      </p>
+    </main>
+    <script src="app.js?v=12"></script>
   </body>
 </html>

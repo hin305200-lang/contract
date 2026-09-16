@@ -1,26 +1,268 @@
+:root {
+  --ink: #111111;
+  --muted: #6b6b6b;
+  --line: #e6e6e6;
+  --soft: #f6f6f6;
+  --ok: #1f6b3a;
+  --accent: #b10f2e;
+  --sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --display: "Cormorant Garamond", "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   margin: 0;
   min-height: 100%;
-  background: #ffffff;
-  color: #111111;
 }
 
-body * {
-  display: none !important;
-}
-
-body::after {
-  content: "The contract has been signed and confirmed.";
-  display: flex !important;
+body {
   min-height: 100vh;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
-  font-family: "Times New Roman", Times, serif;
-  font-size: clamp(28px, 4.6vw, 48px);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  padding: 32px 20px;
+  background: #ffffff;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+.settle {
+  width: min(460px, 100%);
   text-align: center;
+}
+
+.brand {
+  display: block;
+  width: 108px;
+  height: auto;
+  margin: 0 auto 28px;
+}
+
+.mark {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 28px;
+}
+
+.rings {
+  width: 88px;
+  height: 88px;
+  animation: spin 2.8s linear infinite;
+}
+
+.track,
+.arc {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.track {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.arc-a {
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-dasharray: 72 167;
+  stroke-dashoffset: 20;
+}
+
+.arc-b {
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 42 134;
+  transform-origin: 44px 44px;
+  transform-box: fill-box;
+  animation: spin-rev 3.6s linear infinite;
+}
+
+.kicker {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-family: var(--display);
+  font-size: clamp(28px, 5vw, 40px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.lede {
+  margin: 0 auto 32px;
+  max-width: 38em;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.steps {
+  display: grid;
+  gap: 0;
+  margin: 0 0 28px;
+  padding: 4px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  list-style: none;
+  text-align: left;
+}
+
+.steps li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 14px 0;
+  color: #b0b0b0;
+}
+
+.steps li + li {
+  border-top: 1px solid var(--soft);
+}
+
+.steps strong,
+.steps em {
+  display: block;
+}
+
+.steps strong {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.steps em {
+  margin-top: 3px;
+  font-size: 12px;
+  font-style: normal;
+}
+
+.step-mark {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.steps .done {
+  color: var(--ok);
+}
+
+.steps .done .step-mark {
+  background: var(--ok);
+  border-color: var(--ok);
+}
+
+.steps .active {
+  color: var(--ink);
+}
+
+.steps .active .step-mark {
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(177, 15, 46, 0.12);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+.steps .active em {
+  color: var(--muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 0 24px;
+}
+
+.facts div {
+  text-align: left;
+}
+
+.facts dt {
+  margin: 0 0 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 520px) {
+  .facts {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rings,
+  .arc-b,
+  .steps .active .step-mark,
+  .live-dot {
+    animation: none;
+  }
 }
